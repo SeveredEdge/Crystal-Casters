@@ -60,6 +60,17 @@ public class SCR_Teleportation : MonoBehaviour
                 teleportScripts[i].SetActive(false);
             }
         }
+        //Ensures no other mrtk componenet re-enables teleporting
+        else
+        {
+            foreach (TeleportScripts t in teleportScripts)
+            {
+                if (t.lineRenderer.isActiveAndEnabled && !crystal.isGrabbed)
+                {
+                    t.SetActive(false);
+                }
+            }
+        }
     }
 
 

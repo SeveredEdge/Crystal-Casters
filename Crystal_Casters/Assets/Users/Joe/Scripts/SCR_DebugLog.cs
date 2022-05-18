@@ -30,4 +30,9 @@ public class SCR_DebugLog : MonoBehaviour
 
         log.text += "\n" + str;
     }
+
+    public void Refresh()
+    {
+        log.text = "Debug Log: ";
+    }
 }

@@ -151,6 +151,7 @@ public class OVRGrabbable : MonoBehaviour
         }
 
         grabEvent = new UnityEvent();
+        dropEvent = new UnityEvent();
     }
 
     protected virtual void Start()
