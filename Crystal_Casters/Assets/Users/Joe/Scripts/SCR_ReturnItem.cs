@@ -11,6 +11,8 @@ public class SCR_ReturnItem : MonoBehaviour
     private Rigidbody rb;
     private OVRGrabbable grabbable;
 
+    public Vector3 beltOrientation = Vector3.zero;
+
     private void Awake()
     {
         item = transform;
@@ -43,7 +45,7 @@ public class SCR_ReturnItem : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         item.SetParent(parentObj);
         item.localPosition = Vector3.zero;
-        item.rotation = Quaternion.identity;
+        item.rotation = Quaternion.Euler(beltOrientation);
         rb.useGravity = false;
         rb.isKinematic = true;
     }
