@@ -21,14 +21,14 @@ public class SCR_DebugLog : MonoBehaviour
         }
     }
 
-    public void Print(string str)
+    public void Print<T>(T str)
     {
         if (log == null)
         {
             log = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         }
 
-        log.text += "\n" + str;
+        log.text += "\n" + str.ToString();
     }
 
     public void Refresh()

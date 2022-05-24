@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - OVR_Rig
+  - Left_Hand
+  - Right_Hand
   layers:
   - Default
   - TransparentFX

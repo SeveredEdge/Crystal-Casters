@@ -58,6 +58,7 @@ public class SCR_Teleportation : MonoBehaviour
                 SCR_DebugLog.Instance.Print("Controller " + i.ToString() + " connected");
                 teleportScripts.Add(new TeleportScripts(lst[i]));
                 teleportScripts[i].SetActive(false);
+                FindObjectOfType<SCR_CrystalCasting>().AssignGestureControllers();
             }
         }
         //Ensures no other mrtk componenet re-enables teleporting

@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 5992416599788779233}
   m_Layer: 7
   m_Name: CustomHandLeft
-  m_TagString: Untagged
+  m_TagString: Left_Hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

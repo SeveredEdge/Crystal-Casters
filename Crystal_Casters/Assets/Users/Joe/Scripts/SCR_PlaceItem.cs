@@ -28,7 +28,7 @@ public class SCR_PlaceItem : MonoBehaviour
         outline.enabled = false;
         outline.transform.SetParent(containerObj);
         outline.transform.localPosition = Vector3.zero;
-        outline.transform.rotation = Quaternion.identity;
+        outline.transform.rotation = Quaternion.Euler(GetComponent<SCR_ReturnItem>().beltOrientation);
 
         grabbable.grabEvent.AddListener(ItemHeld);
         grabbable.dropEvent.AddListener(ItemDropped);
