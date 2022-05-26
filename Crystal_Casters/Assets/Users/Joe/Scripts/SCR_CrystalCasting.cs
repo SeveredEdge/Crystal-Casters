@@ -15,13 +15,15 @@ public class SCR_CrystalCasting : MonoBehaviour
     {
         if (data.similarity >= 0.25f && data.similarity <= 1)
         {
-            SCR_DebugLog.Instance.Print(data.gestureName);
-            SCR_DebugLog.Instance.Print(data.similarity);
+            Debug.Log(data.gestureName);
+            Debug.Log(data.similarity);
         }
     }
 
     public void AssignGestureControllers()
     {
+        if (mivrySCR == null) return;
+
         mivrySCR.LeftHand = GameObject.FindGameObjectWithTag("Left_Hand");
         mivrySCR.RightHand = GameObject.FindGameObjectWithTag("Right_Hand");
     }

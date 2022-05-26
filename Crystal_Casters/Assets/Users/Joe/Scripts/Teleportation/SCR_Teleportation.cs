@@ -55,10 +55,19 @@ public class SCR_Teleportation : MonoBehaviour
             ParabolicTeleportPointer[] lst = FindObjectsOfType<ParabolicTeleportPointer>();
             for (int i = 0; i < lst.Length; i++)
             {
-                SCR_DebugLog.Instance.Print("Controller " + i.ToString() + " connected");
+                //Debug.Log("Controller " + i + " connected");
                 teleportScripts.Add(new TeleportScripts(lst[i]));
                 teleportScripts[i].SetActive(false);
-                FindObjectOfType<SCR_CrystalCasting>().AssignGestureControllers();
+
+                //If gesture script exists bind controllers to it
+                try
+                {
+                    FindObjectOfType<SCR_CrystalCasting>().AssignGestureControllers();
+                }
+                catch (System.NullReferenceException e)
+                {
+                    Debug.Log(e.Message);
+                }
             }
         }
         //Ensures no other mrtk componenet re-enables teleporting

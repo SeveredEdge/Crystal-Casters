@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Microsoft.MixedReality.Toolkit;
 
 public class SCR_PlaceItem : MonoBehaviour
 {
-    [Header("Object to place into")]
-    [SerializeField] private Transform containerObj;
+    [Header("Objects to place into")]
+    [SerializeField] private Transform[] containerObjects;
+    [Header("Belt slot to place into")]
+    [SerializeField] private Transform beltObj;
     [Header("Distance before snap placement")]
     [SerializeField] private float snapDistance;
     [Header("Distance to move before snap is enabled")]
@@ -18,6 +21,8 @@ public class SCR_PlaceItem : MonoBehaviour
     private Rigidbody rb;
     [SerializeField]private Animation anim;
     [SerializeField] private Outline outline;
+    private Transform lastObject, desiredObject;
+
 
     private void Awake()
     {
@@ -26,12 +31,20 @@ public class SCR_PlaceItem : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         
         outline.enabled = false;
-        outline.transform.SetParent(containerObj);
-        outline.transform.localPosition = Vector3.zero;
-        outline.transform.rotation = Quaternion.Euler(GetComponent<SCR_ReturnItem>().beltOrientation);
+        lastObject = beltObj;
+        MoveOutline(beltObj);
 
         grabbable.grabEvent.AddListener(ItemHeld);
         grabbable.dropEvent.AddListener(ItemDropped);
+    }
+
+    private void MoveOutline(Transform newPos)
+    {
+        if (outline.transform.parent == newPos) return;
+
+        outline.transform.SetParent(newPos);
+        outline.transform.localPosition = Vector3.zero;
+        outline.transform.localRotation = Quaternion.Euler(Vector3.zero);
     }
 
     private void Update()
@@ -43,7 +56,7 @@ public class SCR_PlaceItem : MonoBehaviour
         if (justGrabbed)
         {
             //Once the item has left the predetermined snap range, it can now be snapped back
-            if (Vector3.Distance(containerObj.position, item.position) > enableDistance)
+            if (Vector3.Distance(lastObject.position, item.position) > enableDistance)
             {
                 justGrabbed = false;
             }
@@ -53,46 +66,68 @@ public class SCR_PlaceItem : MonoBehaviour
             }
         }
 
+        Transform closestObj = containerObjects[0];
+        for (int i = 1; i < containerObjects.Length; i++)
+        {
+            float distance = Vector3.Distance(containerObjects[i].position, item.position);
+            if (distance < Vector3.Distance(closestObj.position, item.position))
+            {
+                closestObj = containerObjects[i];
+            }
+        }
 
-        if (Vector3.Distance(containerObj.position, item.position) <= snapDistance)
+        if (Vector3.Distance(closestObj.position, item.position) <= snapDistance)
         {
             snapReady = true;
+            MoveOutline(closestObj);
+            desiredObject = closestObj;
             if (!outline.isActiveAndEnabled) outline.enabled = true;
-            if (!anim.isPlaying) anim.Play();
+            //if (!anim.isPlaying) anim.Play();
         }
         else
         {
             snapReady = false;
             if (outline.isActiveAndEnabled) outline.enabled = false;
-            if (anim.isPlaying) anim.Stop();
+            //if (anim.isPlaying) anim.Stop();
         }
     }
 
     private void SnapToPosition()
     {
-        item.SetParent(containerObj);
+        //Debug.Log("Snapped to: " + desiredObject.name);
+
+        item.SetParent(desiredObject);
+        lastObject = desiredObject;
         item.localPosition = outline.transform.localPosition;
         item.rotation = outline.transform.rotation;
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         rb.useGravity = false;
+        rb.isKinematic = true;
+        //Debug.Log("Item parent = " + item.parent);
+        //Debug.Log("Container object's parent: " + desiredObject.parent.name);
     }
 
-    private void ItemHeld()
+    public void ItemHeld()
     {
         isHeld = true;
         justGrabbed = true;
+        //Debug.Log("Item is Held!");
     }
 
-    private void ItemDropped()
+    public void ItemDropped()
     {
         isHeld = false;
         outline.enabled = false;
         rb.isKinematic = false;
-        if (anim.isPlaying) anim.Stop();
+        //if (anim.isPlaying) anim.Stop();
         if (snapReady)
         {
             SnapToPosition();
+        }
+        else
+        {
+            item.SetParent(MixedRealityPlayspace.Transform);
         }
     }
 }
