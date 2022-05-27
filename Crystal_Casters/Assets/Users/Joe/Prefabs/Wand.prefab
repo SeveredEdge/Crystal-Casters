@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 4215279257155813154}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &746133876668882542
 MeshFilter:
@@ -113,9 +113,11 @@ GameObject:
   - component: {fileID: 4215279257155813155}
   - component: {fileID: 4215279257155812574}
   - component: {fileID: 4215279257155812575}
+  - component: {fileID: 6823248350758875675}
+  - component: {fileID: 6637786401696629301}
   m_Layer: 7
   m_Name: Wand
-  m_TagString: Untagged
+  m_TagString: Wand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,6 +133,7 @@ Transform:
   m_LocalPosition: {x: 3.782, y: 1.335, z: 2.701}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3492007546159746126}
   - {fileID: 4464500287493951947}
   - {fileID: 4215279258499671744}
   - {fileID: 4215279258425068063}
@@ -221,6 +224,60 @@ MonoBehaviour:
   enableDistance: 0.2
   anim: {fileID: 3944810187780819822}
   outline: {fileID: 4215279258499671745}
+--- !u!114 &6823248350758875675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215279257155813157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7823ea6601a9bfc40999fb6114b5c562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6637786401696629301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4215279257155813157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e59d4aea3cbd72c498f430aceb10ef08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LicenseName: 
+  LicenseKey: 
+  GestureDatabaseFile: Crystal_Casters.dat
+  unityXrPlugin: 1
+  mivryCoordinateSystem: 1
+  LeftHand: {fileID: 0}
+  LeftTriggerInput: OculusPrimaryIndexTrigger
+  LeftTriggerInputType: 0
+  LeftTriggerPressure: 0.9
+  RightHand: {fileID: 0}
+  RightTriggerInput: OculusSecondaryIndexTrigger
+  RightTriggerInputType: 0
+  RightTriggerPressure: 0.9
+  compensateHeadMotion: 0
+  OnGestureCompletion:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6823248350758875675}
+        m_TargetAssemblyTypeName: SCR_CrystalCasting, Assembly-CSharp
+        m_MethodName: GestureCompleted
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  magicTrail: {fileID: 3492007546159746124}
 --- !u!1 &4215279258425068062
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,7 +289,7 @@ GameObject:
   - component: {fileID: 4215279258425068063}
   m_Layer: 0
   m_Name: Crystal_Slot
-  m_TagString: Untagged
+  m_TagString: Crystal_Slot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -249,7 +306,7 @@ Transform:
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 4215279257155813154}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4215279258499671747
 GameObject:
@@ -282,7 +339,7 @@ Transform:
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children: []
   m_Father: {fileID: 4215279257155813154}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4215279258499671807
 MeshFilter:
@@ -351,3 +408,78 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
+--- !u!1001 &6158562560387897788
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 4215279257155813154}
+    m_Modifications:
+    - target: {fileID: 7278246187321595376, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595376, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: EmissionModule.rateOverDistance.scalar
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.237
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7278246187321595379, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+      propertyPath: m_Name
+      value: MagicTrail
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+--- !u!4 &3492007546159746126 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7278246187321595378, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+  m_PrefabInstance: {fileID: 6158562560387897788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3492007546159746124 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 7278246187321595376, guid: e0957f17c41ba944a87a0826db0915e5, type: 3}
+  m_PrefabInstance: {fileID: 6158562560387897788}
+  m_PrefabAsset: {fileID: 0}

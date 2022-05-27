@@ -12,7 +12,7 @@ public class SCR_ReturnItem : MonoBehaviour
     private OVRGrabbable grabbable;
 
     
-    private void Awake()
+    private void Start()
     {
         item = transform;
         rb = GetComponent<Rigidbody>();
@@ -27,7 +27,6 @@ public class SCR_ReturnItem : MonoBehaviour
     public void ItemHeld()
     {
         item.SetParent(grabbable.grabbedBy.transform);
-        //Debug.Log(item.parent.name);
         rb.useGravity = true;
     }
 
@@ -46,7 +45,7 @@ public class SCR_ReturnItem : MonoBehaviour
     {
         if (other.gameObject.layer != playerLayer)
         {
-            Debug.Log("Returned to belt");
+            //Debug.Log("Returned to belt");
             //SCR_DebugLog.Instance.Print(LayerMask.LayerToName(other.gameObject.layer).ToString());
             ReturnToBelt();
         }

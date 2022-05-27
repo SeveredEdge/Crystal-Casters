@@ -23,8 +23,11 @@ public class SCR_PlaceItem : MonoBehaviour
     [SerializeField] private Outline outline;
     private Transform lastObject, desiredObject;
 
+    private SCR_CrystalCasting crystalCastingSCR;
+    private bool holdingWand = false;
 
-    private void Awake()
+
+    private void Start()
     {
         item = transform;
         grabbable = GetComponent<OVRGrabbable>();
@@ -104,8 +107,13 @@ public class SCR_PlaceItem : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         rb.useGravity = false;
         rb.isKinematic = true;
-        //Debug.Log("Item parent = " + item.parent);
-        //Debug.Log("Container object's parent: " + desiredObject.parent.name);
+        
+        if (item.parent.CompareTag("Crystal_Slot"))
+        {
+            if (crystalCastingSCR == null) crystalCastingSCR = FindObjectOfType<SCR_CrystalCasting>();
+            crystalCastingSCR.Mivry.enabled = true;
+            crystalCastingSCR.CurrentCrystal = item.tag;
+        }
     }
 
     public void ItemHeld()
@@ -113,6 +121,13 @@ public class SCR_PlaceItem : MonoBehaviour
         isHeld = true;
         justGrabbed = true;
         //Debug.Log("Item is Held!");
+
+
+        if (lastObject.CompareTag("Crystal_Slot"))
+        {
+            crystalCastingSCR.CurrentCrystal = "";
+            crystalCastingSCR.Mivry.enabled = false;
+        }
     }
 
     public void ItemDropped()

@@ -7,6 +7,12 @@ TagManager:
   - OVR_Rig
   - Left_Hand
   - Right_Hand
+  - Crystal_Slot
+  - WaterCrystal
+  - FireCrystal
+  - EarthCrystal
+  - Wand
+  - EmptyCrystal
   layers:
   - Default
   - TransparentFX
