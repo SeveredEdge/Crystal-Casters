@@ -7,10 +7,14 @@ public class SCR_CrystalCasting : MonoBehaviour
     private Mivry mivrySCR;
     private string currentCrystal = "";
 
+    [SerializeField]
+    private ParticleSystem waterParticle, fireParticle, earthParticle;
+    [HideInInspector] public ParticleSystem currentParticle = new ParticleSystem();
+
+
     private void Awake()
     {
         mivrySCR = GetComponent<Mivry>();
-        StartCoroutine(SCR_DebugLog.Instance.DelayedClearLog());
     }
 
 
@@ -20,9 +24,11 @@ public class SCR_CrystalCasting : MonoBehaviour
         //if (data.similarity <= 0.25f || !GetComponent<OVRGrabbable>().isGrabbed) return;
         if (!GetComponent<OVRGrabbable>().isGrabbed) return;
 
-        if (data.gestureName == currentCrystal)
+        if (data.gestureName == currentCrystal && data.similarity >= CrystalThreshold(data.gestureName) && data.similarity < 1)
         {
             Debug.Log("Casting " + data.gestureName + " spell!");
+            Debug.Log("Similarity: " + data.similarity);
+            PlayParticleEffect();
         }
         else if (currentCrystal == "empty")
         {
@@ -32,6 +38,43 @@ public class SCR_CrystalCasting : MonoBehaviour
         {
             Debug.Log("Incorrect incantation or crystal!");
         }
+    }
+
+    private float CrystalThreshold(string crystal)
+    {
+        float threshold = 0;
+        switch (crystal)
+        {
+            case "water":
+                threshold = 0.3f;
+                break;
+            case "fire":
+                threshold = 0.02f;
+                break;
+            case "earth":
+                threshold = 0.3f;
+                break;
+        }
+        return threshold;
+    }
+
+    private void PlayParticleEffect()
+    {
+        switch (currentCrystal)
+        {
+            case "water":
+                if (waterParticle) { currentParticle = waterParticle; }
+                break;
+            case "fire":
+                if (waterParticle) { currentParticle = fireParticle; }
+                break;
+            case "earth":
+                if (waterParticle) { currentParticle = earthParticle; }
+                break;
+        }
+
+        if (currentParticle.isStopped) { currentParticle.Play(); }
+        mivrySCR.currentParticle = currentParticle;
     }
 
     public void AssignGestureControllers()

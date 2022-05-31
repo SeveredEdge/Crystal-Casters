@@ -308,6 +308,7 @@ public class Mivry : MonoBehaviour
     private GestureCompletionData data = new GestureCompletionData();
 
     [SerializeField] private ParticleSystem magicTrail;
+    public ParticleSystem currentParticle;
 
     /// <summary>
     /// Unity start function.
@@ -534,6 +535,10 @@ public class Mivry : MonoBehaviour
             gr.startStroke(p, q);
         }
         if (!magicTrail.isPlaying) magicTrail.Play();
+        if (currentParticle != null)
+        {
+            if (currentParticle.isPlaying) currentParticle.Stop();
+        }
 
         GameObject activeGameObject = LeftHand;
         float activeTrigger = leftTrigger;

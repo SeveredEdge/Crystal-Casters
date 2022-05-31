@@ -13,6 +13,8 @@ TagManager:
   - EarthCrystal
   - Wand
   - EmptyCrystal
+  - End_Trigger
+  - Log
   layers:
   - Default
   - TransparentFX
@@ -22,7 +24,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - Kill_Layer
   - 
   - 
   - 

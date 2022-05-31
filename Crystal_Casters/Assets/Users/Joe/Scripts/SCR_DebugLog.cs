@@ -28,14 +28,14 @@ public class SCR_DebugLog : MonoBehaviour
         log.text = "Debug Log: ";
     }
 
-    public IEnumerator DelayedClearLog()
-    {
-        yield return new WaitForSecondsRealtime(1f);
-        Refresh();
-    }
 
     private void OutputLog(string logString, string stackTrace, LogType type)
     {
+        if (log.text.Length >= 300)
+        {
+            Refresh();
+        }
+
         if (logString.Length == 0)
         {
             log.text += "\n" + stackTrace;

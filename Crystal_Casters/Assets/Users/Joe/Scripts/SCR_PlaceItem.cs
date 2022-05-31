@@ -127,6 +127,7 @@ public class SCR_PlaceItem : MonoBehaviour
         {
             crystalCastingSCR.CurrentCrystal = "";
             crystalCastingSCR.Mivry.enabled = false;
+            DisableParticle();
         }
     }
 
@@ -135,6 +136,7 @@ public class SCR_PlaceItem : MonoBehaviour
         isHeld = false;
         outline.enabled = false;
         rb.isKinematic = false;
+        DisableParticle();
         //if (anim.isPlaying) anim.Stop();
         if (snapReady)
         {
@@ -143,6 +145,20 @@ public class SCR_PlaceItem : MonoBehaviour
         else
         {
             item.SetParent(MixedRealityPlayspace.Transform);
+        }
+    }
+
+    private void DisableParticle()
+    {
+        if (crystalCastingSCR == null && this.CompareTag("Wand")) crystalCastingSCR = GetComponent<SCR_CrystalCasting>();
+        else if (crystalCastingSCR == null) return;
+
+        if (crystalCastingSCR.currentParticle != null)
+        {
+            if (crystalCastingSCR.currentParticle.isPlaying)
+            {
+                crystalCastingSCR.currentParticle.Stop();
+            }
         }
     }
 }
