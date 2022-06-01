@@ -114,6 +114,7 @@ GameObject:
   - component: {fileID: 5007631786658934271}
   - component: {fileID: 5007631786658934268}
   - component: {fileID: 5007631786658934269}
+  - component: {fileID: 4622761782670122770}
   m_Layer: 7
   m_Name: EmptyCrystal
   m_TagString: EmptyCrystal
@@ -223,6 +224,18 @@ MonoBehaviour:
   enableDistance: 0.2
   anim: {fileID: 5007631786946804920}
   outline: {fileID: 5007631786655567561}
+--- !u!114 &4622761782670122770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5007631786658934259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c675c6cdb6982e2458bbdf768a8cbfb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5007631786946804926
 GameObject:
   m_ObjectHideFlags: 0
