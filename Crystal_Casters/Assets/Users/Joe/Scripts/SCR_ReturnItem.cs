@@ -11,9 +11,8 @@ public class SCR_ReturnItem : MonoBehaviour
     private Rigidbody rb;
     private OVRGrabbable grabbable;
 
-    public Vector3 beltOrientation = Vector3.zero;
-
-    private void Awake()
+    
+    private void Start()
     {
         item = transform;
         rb = GetComponent<Rigidbody>();
@@ -23,19 +22,11 @@ public class SCR_ReturnItem : MonoBehaviour
         ReturnToBelt();
 
         grabbable.grabEvent.AddListener(ItemHeld);
-        grabbable.dropEvent.AddListener(ItemDropped);
     }
 
-    private void ItemDropped()
-    {
-        //SCR_DebugLog.Instance.Print("Dropped Item");
-        item.SetParent(MixedRealityPlayspace.Transform);
-    }
-
-    private void ItemHeld()
+    public void ItemHeld()
     {
         item.SetParent(grabbable.grabbedBy.transform);
-        //SCR_DebugLog.Instance.Print(item.parent.name);
         rb.useGravity = true;
     }
 
@@ -45,7 +36,7 @@ public class SCR_ReturnItem : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         item.SetParent(parentObj);
         item.localPosition = Vector3.zero;
-        item.rotation = Quaternion.Euler(beltOrientation);
+        item.localRotation = Quaternion.Euler(Vector3.zero);
         rb.useGravity = false;
         rb.isKinematic = true;
     }
@@ -54,7 +45,7 @@ public class SCR_ReturnItem : MonoBehaviour
     {
         if (other.gameObject.layer != playerLayer)
         {
-            //SCR_DebugLog.Instance.Print("Returned to belt");
+            //Debug.Log("Returned to belt");
             //SCR_DebugLog.Instance.Print(LayerMask.LayerToName(other.gameObject.layer).ToString());
             ReturnToBelt();
         }

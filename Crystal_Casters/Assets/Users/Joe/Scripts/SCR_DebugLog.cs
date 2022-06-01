@@ -18,21 +18,31 @@ public class SCR_DebugLog : MonoBehaviour
         else
         {
             Instance = this;
-        }
-    }
-
-    public void Print<T>(T str)
-    {
-        if (log == null)
-        {
+            Application.logMessageReceived += OutputLog;
             log = transform.GetChild(0).GetComponent<TextMeshProUGUI>();
         }
-
-        log.text += "\n" + str.ToString();
     }
 
     public void Refresh()
     {
         log.text = "Debug Log: ";
+    }
+
+
+    private void OutputLog(string logString, string stackTrace, LogType type)
+    {
+        if (log.text.Length >= 300)
+        {
+            Refresh();
+        }
+
+        if (logString.Length == 0)
+        {
+            log.text += "\n" + stackTrace;
+        }
+        else
+        {
+            log.text += "\n" + logString;
+        }
     }
 }

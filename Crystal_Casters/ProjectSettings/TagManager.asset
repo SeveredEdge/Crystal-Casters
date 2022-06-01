@@ -7,6 +7,14 @@ TagManager:
   - OVR_Rig
   - Left_Hand
   - Right_Hand
+  - Crystal_Slot
+  - WaterCrystal
+  - FireCrystal
+  - EarthCrystal
+  - Wand
+  - EmptyCrystal
+  - End_Trigger
+  - Log
   layers:
   - Default
   - TransparentFX
@@ -16,7 +24,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - Kill_Layer
   - 
   - 
   - 

@@ -307,6 +307,9 @@ public class Mivry : MonoBehaviour
     private GestureCombinations gc = null;
     private GestureCompletionData data = new GestureCompletionData();
 
+    [SerializeField] private ParticleSystem magicTrail;
+    public ParticleSystem currentParticle;
+
     /// <summary>
     /// Unity start function.
     /// </summary>
@@ -516,7 +519,6 @@ public class Mivry : MonoBehaviour
         {
             if (leftTrigger > LeftTriggerPressure)
             {
-                Destroy(GameObject.Find("TEST_CUBE"));
                 LeftHandActive = true;
             }
             else if (rightTrigger > RightTriggerPressure)
@@ -531,6 +533,11 @@ public class Mivry : MonoBehaviour
             Quaternion q = hmd.rotation;
             convertHeadInput(this.mivryCoordinateSystem, ref p, ref q);
             gr.startStroke(p, q);
+        }
+        if (!magicTrail.isPlaying) magicTrail.Play();
+        if (currentParticle != null)
+        {
+            if (currentParticle.isPlaying) currentParticle.Stop();
         }
 
         GameObject activeGameObject = LeftHand;
@@ -562,6 +569,8 @@ public class Mivry : MonoBehaviour
             return;
         }
         // else: user released the trigger, ending the gesture
+        magicTrail.Stop();
+
         Array.Resize<GestureCompletionData.Part>(ref data.parts, 1);
         GestureCompletionData.Part part = data.parts[0] = new GestureCompletionData.Part();
         part.side = side;
