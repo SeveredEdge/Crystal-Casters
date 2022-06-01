@@ -11,10 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/Mixed Reality Toolkit Examples/2.7.3/Demos - HandTracking/Scenes/HandInteractionExamples.unity
     guid: 3dd4a396b5225f8469b9a1eb608bfa57
-  - enabled: 1
+  - enabled: 0
     path: Assets/Users/Joe/Joe Scene.unity
     guid: f70f77a3b138efd4c9e2a4c604bcabd9
-  - enabled: 0
+  - enabled: 1
     path: Assets/Users/Liberty/Liberty_Scene.unity
     guid: 721688236fc1f994eaf2cacc5c702503
   m_configObjects:
