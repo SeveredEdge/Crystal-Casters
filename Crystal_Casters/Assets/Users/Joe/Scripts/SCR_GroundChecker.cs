@@ -64,7 +64,7 @@ public class SCR_GroundChecker : MonoBehaviour
 
         if (standingOnLog)
         {
-            MixedRealityPlayspace.Transform.position += Vector3.left * logSpeed * Time.fixedDeltaTime;
+            MixedRealityPlayspace.Transform.position += Vector3.forward * logSpeed * Time.fixedDeltaTime;
         }
     }
 

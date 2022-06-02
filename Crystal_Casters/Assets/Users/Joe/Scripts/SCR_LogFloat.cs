@@ -16,7 +16,7 @@ public class SCR_LogFloat : MonoBehaviour
 
     private void FixedUpdate()
     {
-        log.position += Vector3.left * speed * Time.fixedDeltaTime;
+        log.position += (log.right * - 1) * speed * Time.fixedDeltaTime;
         //Vector3 newPos = log.position + Vector3.left;
         //rb.MovePosition(newPos * 1f * Time.fixedDeltaTime);
         //rb.AddForce(Vector3.left * 1f * Time.fixedDeltaTime);
@@ -26,7 +26,7 @@ public class SCR_LogFloat : MonoBehaviour
     {
         if (other.CompareTag("End_Trigger"))
         {
-            log.position = new Vector3(startPos.position.x, log.position.y, log.position.z);
+            log.position = new Vector3(log.position.x, log.position.y, startPos.position.z);
         }
     }
 }
